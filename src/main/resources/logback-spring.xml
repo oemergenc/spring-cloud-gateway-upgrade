@@ -16,7 +16,6 @@
         <appender-ref ref="Console" />
     </root>
 
-    <logger name="de.markerud" level="INFO"/>
     <logger name="org.zalando.logbook.Logbook" level="TRACE"/>
     <logger name="reactor.netty.http.server.AccessLog" level="INFO"/>
 
