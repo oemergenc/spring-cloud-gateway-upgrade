@@ -26,23 +26,15 @@ configure<SpotlessExtension> {
 dependencies {
     implementation(platform("org.springframework.boot:spring-boot-starter-parent:$springBootVersion"))
     implementation(platform("org.springframework.cloud:spring-cloud-dependencies:$springCloudDependenciesVersion"))
-//    implementation(platform("com.google.cloud:spring-cloud-gcp-dependencies:$springCloudGcpDependenciesVersion"))
 
     // Server
     implementation("org.springframework.cloud:spring-cloud-starter-gateway")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-//    implementation("io.grpc:grpc-netty")
-
-    // Security
-//    implementation("org.springframework.boot:spring-boot-starter-security")
-//    implementation("org.springframework.security:spring-security-oauth2-jose")
-//    implementation("org.springframework.security:spring-security-oauth2-resource-server")
 
     // Logging
     implementation("io.micrometer:context-propagation")
     implementation("io.micrometer:micrometer-tracing-bridge-brave")
     implementation("io.projectreactor.netty:reactor-netty-http-brave")
-//    implementation("com.google.cloud:spring-cloud-gcp-starter-logging")
 
     // Metrics
     implementation("io.micrometer:micrometer-registry-prometheus")
