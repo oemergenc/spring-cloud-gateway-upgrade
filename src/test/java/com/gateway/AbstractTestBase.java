@@ -9,6 +9,7 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
 import com.gateway.filter.LoggingFilter;
 import io.restassured.RestAssured;
+import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockserver.client.MockServerClient;
@@ -53,8 +54,20 @@ public class AbstractTestBase {
     return sentRequest();
   }
 
+  HttpRequest sendRequestAndTimeout(String path, int timeoutMs) {
+    mockBackendRespondOK(timeoutMs);
+    RestAssured.given().when().port(serverPort).get(path).then().statusCode(SC_OK);
+    return sentRequest();
+  }
+
   private void mockBackendRespondOK() {
-    mockBackend.when(request()).respond(response().withStatusCode(SC_OK));
+    mockBackendRespondOK(0);
+  }
+
+  private void mockBackendRespondOK(int timeoutMs) {
+    mockBackend
+        .when(request())
+        .respond(response().withDelay(TimeUnit.SECONDS, timeoutMs).withStatusCode(SC_OK));
   }
 
   private HttpRequest sentRequest() {

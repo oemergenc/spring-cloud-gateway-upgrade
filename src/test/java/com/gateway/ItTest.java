@@ -9,8 +9,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class ItTest extends AbstractTestBase {
 
   @ParameterizedTest
-  //    @ValueSource(strings = { "/question-route", "/question-controller" })
-  @ValueSource(strings = {"/question-controller"})
+  @ValueSource(strings = {"/question-route", "/question-controller"})
+  //    @ValueSource(strings = {"/question-route"})
   void test(String path) {
     sendRequest(path);
     assertThat(appender.list)
