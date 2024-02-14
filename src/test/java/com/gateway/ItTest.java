@@ -10,7 +10,6 @@ public class ItTest extends AbstractTestBase {
 
   @ParameterizedTest
   @ValueSource(strings = {"/question-route", "/question-controller"})
-  //    @ValueSource(strings = {"/question-route"})
   void test(String path) {
     sendRequest(path);
     assertThat(appender.list)
@@ -23,5 +22,16 @@ public class ItTest extends AbstractTestBase {
         .matches(
             event -> event.getMDCPropertyMap().containsKey("spanId"),
             "expected controller log to contain spanId");
+
+      assertThat(appender.list)
+              .filteredOn(event -> Objects.equals(event.getLoggerName(), accessLogLogger.getName()))
+              .hasSize(1)
+              .singleElement()
+              .matches(
+                      event -> event.getMDCPropertyMap().containsKey("traceId"),
+                      "expected controller log to contain traceId")
+              .matches(
+                      event -> event.getMDCPropertyMap().containsKey("spanId"),
+                      "expected controller log to contain spanId");
   }
 }
