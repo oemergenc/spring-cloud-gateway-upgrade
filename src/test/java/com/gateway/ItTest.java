@@ -23,15 +23,15 @@ public class ItTest extends AbstractTestBase {
             event -> event.getMDCPropertyMap().containsKey("spanId"),
             "expected controller log to contain spanId");
 
-      assertThat(appender.list)
-              .filteredOn(event -> Objects.equals(event.getLoggerName(), accessLogLogger.getName()))
-              .hasSize(1)
-              .singleElement()
-              .matches(
-                      event -> event.getMDCPropertyMap().containsKey("traceId"),
-                      "expected controller log to contain traceId")
-              .matches(
-                      event -> event.getMDCPropertyMap().containsKey("spanId"),
-                      "expected controller log to contain spanId");
+    assertThat(appender.list)
+        .filteredOn(event -> Objects.equals(event.getLoggerName(), accessLogLogger.getName()))
+        .hasSize(1)
+        .singleElement()
+        .matches(
+            event -> event.getMDCPropertyMap().containsKey("traceId"),
+            "expected controller log to contain traceId")
+        .matches(
+            event -> event.getMDCPropertyMap().containsKey("spanId"),
+            "expected controller log to contain spanId");
   }
 }

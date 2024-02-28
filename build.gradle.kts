@@ -34,7 +34,6 @@ dependencies {
     // Logging
     implementation("io.micrometer:context-propagation")
     implementation("io.micrometer:micrometer-tracing-bridge-brave")
-    implementation("io.projectreactor.netty:reactor-netty-http-brave")
 
     // Metrics
     implementation("io.micrometer:micrometer-registry-prometheus")
