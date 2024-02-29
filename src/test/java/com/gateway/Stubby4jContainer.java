@@ -9,6 +9,7 @@ public class Stubby4jContainer extends GenericContainer<Stubby4jContainer> {
     super("azagniotov/stubby4j:latest-jre16");
     this.withExposedPorts(8882);
     this.withEnv("YAML_CONFIG", "stubby4j.yaml");
+    this.withReuse(true);
     this.withCopyFileToContainer(
         MountableFile.forClasspathResource("/stubby4j.yaml/"), "/home/stubby4j/data/stubby4j.yaml");
   }
