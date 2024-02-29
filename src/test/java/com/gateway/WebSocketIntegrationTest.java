@@ -12,9 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletionException;
 import java.util.concurrent.CompletionStage;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.actuate.observability.AutoConfigureObservability;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.testcontainers.containers.output.OutputFrame;
 
 @SpringBootTest(
     classes = Application.class,
@@ -29,6 +31,12 @@ class WebSocketIntegrationTest {
     stubby4jContainer.start();
     websocketMockAddress =
         "ws://" + stubby4jContainer.getHost() + ":" + stubby4jContainer.getFirstMappedPort();
+  }
+
+  @AfterAll
+  static void tearDown() {
+    final String logs = stubby4jContainer.getLogs(OutputFrame.OutputType.END);
+    System.out.println(logs);
   }
 
   @Test
