@@ -6,7 +6,7 @@ import org.testcontainers.utility.MountableFile;
 public class Stubby4jContainer extends GenericContainer<Stubby4jContainer> {
 
   public Stubby4jContainer() {
-    super("azagniotov/stubby4j:latest-jre21");
+    super("azagniotov/stubby4j:latest-jre16");
     this.withExposedPorts(8882);
     this.withEnv("YAML_CONFIG", "stubby4j.yaml");
     this.withCopyFileToContainer(
