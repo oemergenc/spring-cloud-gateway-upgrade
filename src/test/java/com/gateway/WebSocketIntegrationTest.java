@@ -35,7 +35,8 @@ class WebSocketIntegrationTest {
 
   @AfterAll
   static void tearDown() {
-    final String logs = stubby4jContainer.getLogs(OutputFrame.OutputType.END);
+    final String logs = stubby4jContainer.getLogs(OutputFrame.OutputType.STDOUT);
+    System.out.println("STUBBY LOGS");
     System.out.println(logs);
   }
 
