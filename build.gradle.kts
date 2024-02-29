@@ -38,6 +38,8 @@ dependencies {
     // Metrics
     implementation("io.micrometer:micrometer-registry-prometheus")
 
+
+    testImplementation("org.testcontainers:testcontainers:1.19.6")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.rest-assured:rest-assured")
     testImplementation("org.mock-server:mockserver-spring-test-listener:5.15.0")

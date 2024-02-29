@@ -1,0 +1,28 @@
+- web-socket:
+    description: this is a web-socket config
+    url: /demo/web-socket/1
+
+    on-open:
+      policy: once
+      message-type: text
+      body: successfully_connected
+      delay: 200
+
+    on-message:
+      - client-request:
+          message-type: text
+          body: hello_request
+        server-response:
+          policy: once
+          message-type: text
+          body: hello_response
+          delay: 250
+
+      - client-request:
+          message-type: text
+          body: disconnect_request
+        server-response:
+          policy: disconnect
+          message-type: text
+          body: disconnect_response
+          delay: 250
