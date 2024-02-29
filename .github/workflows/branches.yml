@@ -5,7 +5,7 @@ on:
 
 jobs:
   build-branch:
-    runs-on: [ ubuntu ]
+    runs-on: [ ubuntu-latest ]
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
